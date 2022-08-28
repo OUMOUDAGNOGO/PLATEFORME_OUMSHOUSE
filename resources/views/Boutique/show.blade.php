@@ -1,5 +1,5 @@
-@extends('layouts.dashboard')
-@section('adja')
+@extends('home')
+@section('contenus')
 <link rel="icon" href="images/fevicon.png" type="image/png" />
       <!-- bootstrap css -->
       <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -22,15 +22,15 @@
             <div class="col">
                 <div class="card mb-4 rounded-3 shadow-sm border-primary">
                     <div class="card-header py-3 text-white bg-primary border-primary">
-                        <h4 class="my-0 fw-normal">Id: {{$boutiques->id}}</h4>
+                        <h4 class="my-0 fw-normal">Id: {{$boutique->id}}</h4>
                     </div>
                     <div class="card-body" style="list-style: none;">
                         <ul class="list-unstyled mt-3 mb-4">
-                        <li>Nom complet: {{$boutiques->nom_complet}}</li>
-                        <li>nom boutique: {{$boutiques->nom_boutique}}</li>
-                        <li>Adresse boutique: {{$boutiques->adresse_boutique}}</li>
-                        <li>Telephone boutique: {{$boutiques->telephone_boutique}}</li>
-                        <li>email: {{$boutiques->email}}</li>
+                        <li>Nom complet: {{$boutique->nom_complet}}</li>
+                        <li>nom boutique: {{$boutique->nom_boutique}}</li>
+                        <li>Adresse boutique: {{$boutique->adresse_boutique}}</li>
+                        <li>Telephone boutique: {{$boutique->telephone_boutique}}</li>
+                        <li>email: {{$boutique->email}}</li>
                         </ul>
                     </div>
                 </div>

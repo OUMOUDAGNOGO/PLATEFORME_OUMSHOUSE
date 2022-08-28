@@ -15,7 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $client=Clients::all();
+        return view('client.dashclient',compact('client'));
     }
 
     /**

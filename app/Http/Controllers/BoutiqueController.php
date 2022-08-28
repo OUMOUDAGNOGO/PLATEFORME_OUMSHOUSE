@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Models\type_boutique;
 use App\Models\User;
 use App\Models\boutiques;
+
 
 class BoutiqueController extends Controller
 {
@@ -28,10 +30,10 @@ class BoutiqueController extends Controller
      */
     public function create()
     {
-        $user=User::all();
+        $users=User::all();
         $typeb = type_boutique::all();
         
-        return view('Boutique.boutiquesRegistre' ,compact('typeb','user'));
+        return view('Boutique.boutiquesRegistre' ,compact('typeb','users'));
     }
 
     /**
@@ -48,7 +50,8 @@ class BoutiqueController extends Controller
             'nom_boutique' => ['required', 'string', "max:200"],
             'adresse_boutique'=>['required','string',"max:250"],
               'telephone_boutique'=>['required','string',"max:250"],
-              'type_boutiqueId' => ['require','string',"max:200"],
+              'type_boutiqueId' => ['required','string',"max:200"],
+              'userId'=>['required','string',"max:200"],
              'email'=>['required','string',"max:250"],
              'password'=>['required','string',"max:250"],
 
@@ -93,9 +96,9 @@ class BoutiqueController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($boutiques)
+    public function show($id)
     {
-        $boutique = boutiques::findOrFail($boutiques);
+        $boutique = boutiques::findOrFail($id);
         return view('Boutique.show', compact('boutique'));
     }
 

@@ -15,7 +15,8 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        //
+        $produit = Produit::all();
+        return view('produit.index' ,compact('produit'));
     }
 
     /**
@@ -71,6 +72,7 @@ class ProduitController extends Controller
                    
                ]
               );
+              $produit = Produit::create($verification);
             }
     }
 
@@ -82,7 +84,8 @@ class ProduitController extends Controller
      */
     public function show($id)
     {
-        //
+        $produit = Produit::findOrFail($id);
+        return view('produit.show', compact('produit'));
     }
 
     /**
@@ -93,7 +96,9 @@ class ProduitController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $produit = Produit::findOrFail($id);
+         return view('produit.edit', compact('produit'));
     }
 
     /**
@@ -105,8 +110,20 @@ class ProduitController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nom_produit'=> ['required', 'string', "max:250"],
+            'type_produit'=> ['required', 'string', "max:250"],
+            'description'=> ['required', 'string', "max:250"],
+            'categorie_produit'=> ['required', 'string', "max:250"],
+            'prix'=> ['required', 'integer', "max:250"],
+            
+        ]);
+    
+        Produit::whereId($id)->update($validatedData);
+    
+        return redirect('/Produit')->with('success', 'produit mise à jour avec succèss');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -116,6 +133,9 @@ class ProduitController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $produit = Produit::findOrFail($id);
+        $produit->delete();
+    
+        return redirect('/produit')->with('success', 'produit supprimer avec succèss');
     }
 }

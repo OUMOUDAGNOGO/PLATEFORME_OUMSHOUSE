@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produit;
+use App\Models\category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterController extends Controller
 {
@@ -12,76 +15,68 @@ class MasterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
        
-        
+
+    {  $user =  Auth::user();
+        //dd($user);
+        if($user->status == 'Administrateurs'){
+            return view('layouts.dashbord');
+        } else if ($user->status == 'boutique'){
+            // $administrateurs = administrateurs::where('user', $user->id)->first();
+            return view('layouts.produitdash');
+        } else{
             return view('home');
+        }
+        // else if ($user-> status == 'commissaire'){
+        //     $agents = Agent::count();
+        //     return view('commissaria.dashboard2',compact('agents'));
+         
         
+        
+        
+        $categorie =category::all();
+        $produit = Produit::all(); 
+        $nombreproduit = count($produit);
+        $nombrecategorie = count($categorie);
+         
+        {
+            
+            return view('produitdash', compact('Produit','nombreboutique','categorie','nombrecategorie'));
+            
+
+        }    
+    }
+    public function welcome(){
+        
+        return view('welcome');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function register(){
+        
+        return view('auth.register');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function login(){
+        
+        return view('auth.login');
+    }
+    public function dashboard()
+    {     
+        $categorie =category::all();
+        $produit = Produit::all();
+
+       return view('master',compact('produit'));
+        
+        // Nous allons compter 
+
+        $nombreproduit = count($produit);
+        $nombrecategorie = count($categorie);
+
+        
+
+
+        return view('produitdash', compact('Produit','nombreproduit','categorie','nombrecategorie'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

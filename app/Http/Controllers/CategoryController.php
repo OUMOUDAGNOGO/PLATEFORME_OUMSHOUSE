@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\category;
 use App\Models\User;
+use App\Models\Produit;
+
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categorie = category::all();
+        return view('categorie.index',compact('categorie'));
     }
 
     /**
@@ -25,7 +28,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categorie.categorieRegistre');
+        $categorie = category::all();
+        return view('categorie.create',compact('categorie'));
     }
 
     /**

@@ -1,6 +1,6 @@
-@extends('layouts.dashbord')
+@extends('home')
 
-@section('Dilly')
+@section('contenus')
 <link rel="icon" href="images/fevicon.png" type="image/png" />
       <!-- bootstrap css -->
       <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -18,10 +18,10 @@
       <link rel="stylesheet" href="css/custom.css" />
 <style>
   .uper {
-    margin-top: 60px;
-    width: 48%;
-    margin-left: 25%;
-    margin-bottom: 5%;
+    margin-top: 70px;
+    width: 50%;
+    margin-left: 15%;
+    margin-bottom: 2%;
     color: black;
   }
 
@@ -34,7 +34,7 @@
   }
 
   form{
-    width: 200%;
+    width: 100%;
     justify-content: center;
   }
 
@@ -42,6 +42,9 @@
     margin-left: 30%;
     color: white;
     font-weight: bold;
+  }
+  input{
+    border-radius: 30px;
   }
 </style>
 <div class="card uper">
@@ -60,7 +63,7 @@
       </div><br />
     @endif
 
-      <form method="post" action="{{ route('boutique.store') }}">
+      <form method="post" action="{{ route('Boutique.store') }}">
          @csrf
           <div class="form-group">
               <label for="nom_complet">Nom complet</label>
@@ -87,14 +90,7 @@
               <label for="password">Mot de passe</label>
               <input type="text" class="form-control" name="password" placeholder="Veuillez entrer le mot de passe"/>
           </div>
-          <div class="container">
-              <label class="form-label text-white" style="font-weight: bold;" for="doa">users</label>
-              <select class="form-select" style="color: #41A7A5" aria-label="Default select example" name="userId">
-                 @foreach ($user as $User)
-                    <option value="{{$User->id}}">{{$User->id}}</option>
-                 @endforeach
-                </select>
-          </div>
+          
           <div class="container">
               <label class="form-label text-white" style="font-weight: bold;" for="doa">Id type_boutique</label>
               <select class="form-select" style="color: #41A7A5" aria-label="Default select example" name="type_boutiqueId">

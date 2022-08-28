@@ -20,7 +20,7 @@ class BoutiqueController extends Controller
     {
         
         $boutique = boutiques::all();
-        return view('Boutique.index' ,compact('boutique'));
+        return view('Boutique.create' ,compact('boutique'));
     }
 
     /**
